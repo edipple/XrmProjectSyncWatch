@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Microsoft.Crm.Sdk.Messages;
+using Microsoft.Xrm.Sdk;
+using Microsoft.Xrm.Sdk.Query;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.IO;
@@ -12,8 +15,8 @@ namespace XrmProjectSyncWatch
   // Do not forget to update version number and author (company attribute) in AssemblyInfo.cs class
   // To generate Base64 string for Images below, you can use https://www.base64-image.de/
   [Export(typeof(IXrmToolBoxPlugin)),
-      ExportMetadata("Name", "My First Plugin"),
-      ExportMetadata("Description", "This is a description for my first plugin"),
+      ExportMetadata("Name", "Project Operations Sync Watcher"),
+      ExportMetadata("Description", "Monitors Sync process for a Project in PO.  Alows you to review operations that occured during the PSS to Dataverse sync"),
       // Please specify the base64 content of a 32x32 pixels image
       ExportMetadata("SmallImageBase64", null),
       // Please specify the base64 content of a 80x80 pixels image
@@ -77,7 +80,6 @@ namespace XrmProjectSyncWatch
           throw new FileNotFoundException($"Unable to locate dependency: {assmbPath}");
         }
       }
-
       return loadAssembly;
     }
   }
